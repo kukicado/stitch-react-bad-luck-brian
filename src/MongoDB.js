@@ -20,4 +20,8 @@ const insertMeme = (user, topCaption, bottomCaption) => {
       .then(getAllMemes);
 }
 
+const voteOnMeme = () => {
+  // ToDO
+}
+
 export {getAllMemes, insertMeme}

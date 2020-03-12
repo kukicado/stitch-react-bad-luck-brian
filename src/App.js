@@ -6,16 +6,31 @@ import {
   AnonymousCredential,
   GoogleRedirectCredential,
 } from "mongodb-stitch-browser-sdk";
+import { useAuth0 } from "./react-auth0-spa";
 
 import blb from './blb.jpg';
 
 import "./App.css";
 
 const App = () => {
-  let [user, setUser] = useState({});
+  //let [user, setUser] = useState({});
   let [memes, setMemes] = useState([]);
   let [topCaption, setTopCaption ] = useState("");
   let [bottomCaption, setBottomCaption] = useState("");
+
+  const { loading, user, isAuthenticated, loginWithRedirect} = useAuth0();
+  console.log(loading);
+  console.log(isAuthenticated);
+  if(!loading){
+    console.log(isAuthenticated);
+    console.log(user);
+  }
+  /*
+  if(!loading && !isAuthenticated){
+    loginWithRedirect();
+  }
+  */
+
 
 
   useEffect(()=>{
@@ -33,6 +48,7 @@ const App = () => {
     });
   }
   const login = () => {
+    /*
     client.auth.loginWithCredential(new AnonymousCredential())
     .then((user)=>{
       getAllMemes().then(data => {
@@ -40,12 +56,14 @@ const App = () => {
       }
     )})
     .catch(err => console.log(err))
+    */
+   loginWithRedirect();
   }
 
   const logout = () => {
     console.log('called');
     client.auth.logout();
-    setUser();
+    //setUser();
   }
 
   const handleTopChange = (event) => {
