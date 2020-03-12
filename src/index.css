@@ -1,0 +1,35 @@
+.caption {
+  font-family: impact;
+  font-size: 2em;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-shadow:2px 2px 0 #000,
+  -2px -2px 0 #000,
+  2px -2px 0 #000,
+  -2px 2px 0 #000,
+  0px 2px 0 #000,
+  2px 0px 0 #000,
+  0px -2px 0 #000,
+  -2px 0px 0 #000,
+  2px 2px 5px #000;
+}
+
+.top {
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, -5%);
+  width: 90%;
+}
+
+.bottom {
+  bottom: 20%;
+  left: 50%;
+  transform: translate(-50%, -5%);
+  width: 90%;
+}
+
+.caption input {
+  font-size: 16px;
+  padding: 5px 25px;
+  width: 80%;
+}
