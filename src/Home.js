@@ -4,7 +4,8 @@ import { client, mongodb } from './Stitch';
 import { getAllMemes, insertMeme } from './MongoDB';
 import {
     AnonymousCredential,
-    GoogleRedirectCredential
+    GoogleRedirectCredential,
+    CustomCredential
 } from 'mongodb-stitch-browser-sdk';
 import { useAuth0 } from './react-auth0-spa';
 import blb from './blb.jpg';
@@ -18,6 +19,7 @@ export default function Home() {
         user,
         isAuthenticated,
         loginWithRedirect,
+        getTokenSilently,
         logout
     } = useAuth0();
 
@@ -26,6 +28,20 @@ export default function Home() {
             getAllMemes().then((data) => {
                 setMemes(data);
             });
+        } else {
+            getTokenSilently().then(token => {
+                console.log(token);
+                const credential = new CustomCredential(token);
+
+            client.auth.loginWithCredential(credential)
+  .then(authedUser => {
+      console.log(authedUser);
+    getAllMemes().then((data) => {
+        setMemes(data);
+    });
+  })
+  .catch( err => console.error(`failed to log in with custom auth: ${err}`))
+            })
         }
     }, []);
 
