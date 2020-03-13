@@ -5,11 +5,6 @@ import Home from "./Home";
 import { useAuth0 } from "./react-auth0-spa";
 
 function App() {
-  const { loading } = useAuth0();
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
   return (
     <div className="App">
       <Router history={history}>
